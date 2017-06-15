@@ -62,31 +62,31 @@
                          <div class="control-group">
                         <label>Username</label>
                           <div class="controls">
-                        <input type="text" value="" class="input-xlarge">
+                        <input type="text" value="" class="input-xlarge" id="userName">
                           </div>
                          </div>
                          <div class="control-group">
                         <label>First Name</label>
                           <div class="controls">
-                        <input type="text" value="" class="input-xlarge">
+                        <input type="text" value="" class="input-xlarge" id="fName">
                           </div>
                         </div>
                          <div class="control-group">
                         <label>Last Name</label>
                           <div class="controls">
-                        <input type="text" value="" class="input-xlarge">
+                        <input type="text" value="" class="input-xlarge" id="lName">
                           </div>
                          </div>
                           <div class="control-group">
                         <label>Email</label>
                           <div class="controls">
-                        <input type="text" value="" class="input-xlarge">
+                        <input type="text" value="" class="input-xlarge" id="email">
                           </div>
                           </div>
                          
                         <div class="control-group">
                             <div class="controls">
-                          <button class="btn btn-primary" style="margin-top: 11px;">Create Account</button>
+                          <button class="btn btn-primary" id="register" style="margin-top: 11px;">Create Account</button>
                             </div>
                         </div>
                       </form>
@@ -97,6 +97,41 @@
         </div>
 	</div>
 </div>
+
+  <script>
+
+$("#register").click(function()
+{
+  var Username=$("#userName").val();
+	var FirstName=$("#fName").val();
+  var LastName=$("#lName").val();
+  var Email= $("#email").val();
+	
+		
+			$.ajax({
+				type: 'POST',
+				url: '/register',
+				datatype:'jsonp',
+				jsonp:"callback",
+				data:{Username:Username,FirstName:FirstName,LastName:LastName,Email:Email},
+				
+				success : function(response)
+				{
+								 
+				console.log(response)
+				
+				},
+				error:function(err)
+				{
+					console.log(err);
+					
+				}
+			
+			});
+		
+	});
+
+    </script>
 
 </body>
 </html>
